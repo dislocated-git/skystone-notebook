@@ -95,7 +95,9 @@ if (max != 0) {
 
 Ok, so now our robot can drive in all directions and rotate around itself. This is basically enough for our usecase, but we decided to also implement a toggable PID system that would maintain a heading. This can be used in autonomous for driving and TeleOP in case we have a failure that affects the movement.
 
-This is some logic behind the PID:
+## Correcting our movement (PID)
+
+Here's some logic behind the PID:
 
 * If robot is turning around itself - the pid is off
 * If the robot is changing it's vector of movement - the pid is off
@@ -119,3 +121,9 @@ else{
     correction = 0;
 }
 ```
+
+As you can see we have separated all methods to do with the PID in a separate class, and all control of the PID for this specific OPMode (like `resetAngle()`) inside methods of this OPMode.
+
+## Other control
+
+Our robot has an arm that uses linear motion to extend, as well as a grabber that needs to be able to grab onto a block and release it. More detailed descriptions of these parts are available in other parts of the notebook. The code for these components mainly consists of user input and tuning, and as such is not included in this overview.
